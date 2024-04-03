@@ -36,7 +36,9 @@ fun Profile(modifier: Modifier = Modifier) {
     val galleryLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
-        pfpImage = uri.toString()
+        uri?.let {
+            pfpImage = uri.toString()
+        }
     }
 
     val permissionLauncher = rememberLauncherForActivityResult(
