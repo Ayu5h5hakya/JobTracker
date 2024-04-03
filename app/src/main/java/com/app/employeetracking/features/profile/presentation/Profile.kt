@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -63,7 +64,7 @@ fun Profile(modifier: Modifier = Modifier) {
         ) {
             if (pfpImage.isNullOrEmpty()) {
                 Image(
-                    modifier = Modifier.align(Alignment.Center).background(shape = CircleShape, color = colorResource(R.color.black)),
+                    modifier = Modifier.align(Alignment.Center).size(100.dp).clip(CircleShape),
                     painter = painterResource(R.drawable.editprofile),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds
@@ -75,16 +76,17 @@ fun Profile(modifier: Modifier = Modifier) {
                         .build(),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds,
-                    modifier = Modifier.align(Alignment.Center).background(shape = CircleShape, color = colorResource(R.color.black))
+                    modifier = Modifier.align(Alignment.Center).clip(CircleShape)
                 )
             }
             Image(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .background(shape = RectangleShape, color = colorResource(R.color.white)),
+                    .size(24.dp)
+                    .background(shape = CircleShape, color = colorResource(R.color.white)),
                 painter = painterResource(R.drawable.profilechngicon),
                 contentDescription = null,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit
             )
         }
     }
