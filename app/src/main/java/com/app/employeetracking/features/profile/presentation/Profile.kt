@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,11 +32,15 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.app.employeetracking.R
+import com.app.employeetracking.core.composables.OptionModal
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Profile(modifier: Modifier = Modifier) {
 
     var pfpImage by remember { mutableStateOf("") }
+    var showImageProviderSheet by remember { mutableStateOf(false) }
+    var sheetState = rememberModalBottomSheetState()
 
     val galleryLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.GetContent()
@@ -45,7 +53,8 @@ fun Profile(modifier: Modifier = Modifier) {
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = { isGranted ->
-            galleryLauncher.launch("image/*")
+            showImageProviderSheet = true
+//            galleryLauncher.launch("image/*")
         }
     )
 
@@ -64,7 +73,10 @@ fun Profile(modifier: Modifier = Modifier) {
         ) {
             if (pfpImage.isNullOrEmpty()) {
                 Image(
-                    modifier = Modifier.align(Alignment.Center).size(100.dp).clip(CircleShape),
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(100.dp)
+                        .clip(CircleShape),
                     painter = painterResource(R.drawable.editprofile),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds
@@ -76,7 +88,9 @@ fun Profile(modifier: Modifier = Modifier) {
                         .build(),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds,
-                    modifier = Modifier.align(Alignment.Center).clip(CircleShape)
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .clip(CircleShape)
                 )
             }
             Image(
@@ -88,6 +102,17 @@ fun Profile(modifier: Modifier = Modifier) {
                 contentDescription = null,
                 contentScale = ContentScale.Fit
             )
+        }
+        if (showImageProviderSheet) {
+            OptionModal(options = listOf("camera", "gallery")) { option: String ->
+                showImageProviderSheet = false
+                when (option) {
+                    "camera" -> {}
+                    "gallery" -> {
+                        galleryLauncher.launch("image/*")
+                    }
+                }
+            }
         }
     }
 }
