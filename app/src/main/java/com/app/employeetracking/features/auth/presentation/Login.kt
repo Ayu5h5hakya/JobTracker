@@ -13,9 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -29,16 +27,12 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.app.employeetracking.R
 import com.app.employeetracking.core.composables.Progress
-import com.app.employeetracking.features.auth.domain.viewmodel.AuthViewModel
-import com.google.firebase.messaging.FirebaseMessaging
 
 @Composable
 fun Login(
     modifier: Modifier = Modifier,
-    viewModel: AuthViewModel = hiltViewModel(),
     gotoForgotPassword: () -> Unit = {}
 ) {
     Scaffold(containerColor = colorResource(R.color.purple_200)) { padding ->

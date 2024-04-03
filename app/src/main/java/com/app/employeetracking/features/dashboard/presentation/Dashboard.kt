@@ -55,9 +55,9 @@ fun Dashboard(
 ) {
 
     LaunchedEffect(Unit) {
-        if (!viewModel.isUserLoggedIn()) {
-            gotoLogin()
-        }
+//        if (!viewModel.isUserLoggedIn()) {
+//            gotoLogin()
+//        }
     }
 
     var currentPageIndex by remember { mutableIntStateOf(0) }

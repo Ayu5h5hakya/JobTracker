@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.app.employeetracking.features.auth.data.datasources.remote.AuthApi
 import com.app.employeetracking.features.journey.data.datasources.remote.JourneyApi
 import dagger.Module
 import dagger.Provides
@@ -24,12 +25,11 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideJourneyApi() : JourneyApi {
+    fun provideRetrofit() : Retrofit {
         return Retrofit.Builder()
             .baseUrl("http://ec2-54-86-119-176.compute-1.amazonaws.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create()
     }
 
     @Provides
@@ -39,5 +39,19 @@ object AppModule {
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { appContext.preferencesDataStoreFile("employee_preferences") }
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideJourneyApi(retrofit: Retrofit) : JourneyApi {
+        return retrofit
+            .create(JourneyApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthApi(retrofit: Retrofit) : AuthApi {
+        return retrofit
+            .create(AuthApi::class.java)
     }
 }
