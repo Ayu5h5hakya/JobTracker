@@ -1,4 +1,4 @@
-package com.app.employeetracking.ui.theme
+package com.app.employeetracking.core.theme
 
 import android.app.Activity
 import android.os.Build

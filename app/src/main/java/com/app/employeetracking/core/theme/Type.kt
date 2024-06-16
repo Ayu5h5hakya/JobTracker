@@ -1,4 +1,4 @@
-package com.app.employeetracking.ui.theme
+package com.app.employeetracking.core.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
