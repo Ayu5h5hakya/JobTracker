@@ -62,7 +62,15 @@ fun JobTrackerApp() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
-            DashboardBottomBar()
+            DashboardBottomBar(
+                onItemSelected = { index ->
+                    if(index == 0) navController.navigate(route = Journey)
+                    if(index == 1) navController.navigate(route = Jobs)
+                    if(index == 2) navController.navigate(route = Home)
+                    if(index == 3) navController.navigate(route = Trunk)
+                    if(index == 4) navController.navigate(route = Profile)
+                }
+            )
         }
     ) { innerPadding ->
         NavHost(
@@ -85,7 +93,7 @@ data class DashboardItem(
 )
 
 @Composable
-fun DashboardBottomBar(modifier: Modifier = Modifier) {
+fun DashboardBottomBar(modifier: Modifier = Modifier, onItemSelected: (Int) -> Unit = {}) {
     var selectedIndex by remember { mutableIntStateOf(0) }
     val items = listOf(
         DashboardItem(
@@ -113,7 +121,10 @@ fun DashboardBottomBar(modifier: Modifier = Modifier) {
         items.forEachIndexed { index, dashboardItem ->
             NavigationBarItem(
                 selected = selectedIndex == index,
-                onClick = {},
+                onClick = {
+                    selectedIndex = index
+                    onItemSelected(index)
+                },
                 icon = {
                     Icon(
                         imageVector = items[index].icon,
