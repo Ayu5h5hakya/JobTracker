@@ -1,17 +1,14 @@
 package com.app.employeetracking.features.journey.presentation
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.app.employeetracking.features.journey.domain.viewmodel.JourneyViewModel
 
 @Composable
-fun Journey(modifier: Modifier = Modifier) {
+fun Journey(modifier: Modifier = Modifier, viewModel: JourneyViewModel = hiltViewModel()) {
+    val journey by viewModel.journey.collectAsState()
+
 }

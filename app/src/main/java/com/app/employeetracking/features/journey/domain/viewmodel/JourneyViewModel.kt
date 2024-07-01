@@ -9,6 +9,9 @@ import com.app.employeetracking.core.Result
 import com.app.employeetracking.features.journey.domain.model.Journey
 import com.app.employeetracking.features.journey.domain.repository.JourneyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,7 +19,8 @@ import javax.inject.Inject
 class JourneyViewModel @Inject constructor(
     private val repository: JourneyRepository
 ) : ViewModel(){
-    private var state by mutableStateOf<Result<Journey>>(Result.Loading())
+    private var _journey = MutableStateFlow<Result<Journey>>(Result.Loading())
+    val journey: StateFlow<Result<Journey>> = _journey.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -27,9 +31,9 @@ class JourneyViewModel @Inject constructor(
     private suspend fun getJourneyDetails() {
         try {
             val journey = repository.getJourneyDetail()
-            state = Result.Success(journey)
+            _journey.value = Result.Success(journey)
         } catch (e : Exception) {
-            state = Result.Error(message = "Err")
+            _journey.value = Result.Error(message = "Err")
         }
     }
 }
