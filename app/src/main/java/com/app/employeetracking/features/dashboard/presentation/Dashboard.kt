@@ -9,23 +9,23 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.app.employeetracking.features.dashboard.domain.viewmodel.EmployeeViewModel
 import com.app.employeetracking.features.home.presentation.Home
 import com.app.employeetracking.features.jobs.presentation.Jobs
-import com.app.employeetracking.features.journey.presentation.Journey
 import com.app.employeetracking.features.journey.presentation.MyJourney
 import com.app.employeetracking.features.profile.presentation.Profile
 import com.app.employeetracking.features.trunk.presentation.Trunk
@@ -48,7 +48,18 @@ object Profile
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Dashboard(modifier: Modifier = Modifier) {
+fun Dashboard(
+    modifier: Modifier = Modifier,
+    viewModel: EmployeeViewModel = hiltViewModel(),
+    gotoLogin: () -> Unit = {}
+) {
+
+    LaunchedEffect(Unit) {
+        if (!viewModel.isUserLoggedIn()) {
+            gotoLogin()
+        }
+    }
+
     var currentPageIndex by remember { mutableIntStateOf(0) }
     Scaffold(
         topBar = {

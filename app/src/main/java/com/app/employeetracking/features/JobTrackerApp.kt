@@ -35,6 +35,10 @@ fun JobTrackerApp() {
             composable<Login> { Login() }
             composable<Forgot> {  }
         }
-        composable<Dashboard> { Dashboard() }
+        composable<Dashboard> { Dashboard(
+            gotoLogin = {
+                navController.navigate(route = Auth)
+            }
+        ) }
     }
 }
