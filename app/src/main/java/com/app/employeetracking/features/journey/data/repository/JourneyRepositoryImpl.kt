@@ -1,5 +1,6 @@
 package com.app.employeetracking.features.journey.data.repository
 
+import android.util.Log
 import com.app.employeetracking.features.journey.data.datasources.remote.JourneyApi
 import com.app.employeetracking.features.journey.domain.model.Journey
 import com.app.employeetracking.features.journey.domain.repository.JourneyRepository
