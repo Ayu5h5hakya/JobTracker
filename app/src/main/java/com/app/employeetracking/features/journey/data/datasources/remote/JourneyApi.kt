@@ -1,6 +1,6 @@
 package com.app.employeetracking.features.journey.data.datasources.remote
 
-import okhttp3.ResponseBody
+import com.app.employeetracking.features.journey.domain.model.Journey
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,5 +10,5 @@ interface JourneyApi {
         @Query("user_id") userId: String,
         @Query("language") langCode: String,
         @Query("mobiledate") date: String
-    ) : ResponseBody
+    ) : Journey
 }
