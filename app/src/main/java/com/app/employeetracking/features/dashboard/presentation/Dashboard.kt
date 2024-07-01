@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.app.employeetracking.features.home.presentation.Home
 import com.app.employeetracking.features.jobs.presentation.Jobs
 import com.app.employeetracking.features.journey.presentation.Journey
+import com.app.employeetracking.features.journey.presentation.MyJourney
 import com.app.employeetracking.features.profile.presentation.Profile
 import com.app.employeetracking.features.trunk.presentation.Trunk
 import kotlinx.serialization.Serializable
@@ -76,7 +77,7 @@ fun Dashboard(modifier: Modifier = Modifier) {
         }
     ) { innerPadding ->
         when (currentPageIndex) {
-            0 -> Journey(Modifier.padding(innerPadding))
+            0 -> MyJourney(Modifier.padding(innerPadding))
             1 -> Jobs(Modifier.padding(innerPadding))
             2 -> Home(Modifier.padding(innerPadding))
             3 -> Trunk(Modifier.padding(innerPadding))

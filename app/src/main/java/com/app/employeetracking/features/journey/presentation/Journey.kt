@@ -14,13 +14,4 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun Journey(modifier: Modifier = Modifier) {
-    var currentIndex by remember { mutableIntStateOf(0) }
-    val tabs = listOf("Journey", "History", "Holiday", "Requests")
-    Column(modifier) {
-        TabRow(modifier = Modifier.fillMaxWidth(),selectedTabIndex = currentIndex) {
-            tabs.forEachIndexed { index, title ->
-                Tab(text = { Text(title) }, selected = index == currentIndex, onClick = {currentIndex = index})
-            }
-        }
-    }
 }
