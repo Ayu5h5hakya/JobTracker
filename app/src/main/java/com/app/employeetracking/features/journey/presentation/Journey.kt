@@ -13,7 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.app.employeetracking.core.Result
+import com.app.employeetracking.core.data.Result
 import com.app.employeetracking.features.journey.domain.viewmodel.JourneyViewModel
 
 @Composable
