@@ -6,11 +6,11 @@ import com.app.employeetracking.features.journey.domain.model.Journey
 import com.app.employeetracking.features.journey.domain.repository.JourneyRepository
 
 class JourneyRepositoryImpl(private val api: JourneyApi) : JourneyRepository {
-    override suspend fun getJourneyDetail(): Result<Journey> {
+    override suspend fun getJourneyDetail(): Journey {
         return try {
-            Result.Success<Journey>(data = api.getJourneyDetails("", "", ""))
+            api.getJourneyDetails("", "", "")
         } catch (e: Exception) {
-            Result.Error<Journey>(message = "Err")
+            throw e
         }
     }
 }
