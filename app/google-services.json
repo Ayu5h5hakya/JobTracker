@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "565100356785",
+    "project_id": "tracker-abd4b",
+    "storage_bucket": "tracker-abd4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565100356785:android:e86c3774bff7bf9f0bae90",
+        "android_client_info": {
+          "package_name": "com.app.employeetracking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwPtaSf-2sdqD7ABHItQKTTnHMk7xQ9vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
