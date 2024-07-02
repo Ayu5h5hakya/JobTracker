@@ -42,7 +42,11 @@ fun JobTrackerApp() {
         }
         composable<Dashboard> { Dashboard(
             gotoLogin = {
-                navController.navigate(route = Auth)
+                navController.navigate(route = Auth) {
+                    popUpTo(Dashboard) {
+                        inclusive = true
+                    }
+                }
             }
         ) }
     }
