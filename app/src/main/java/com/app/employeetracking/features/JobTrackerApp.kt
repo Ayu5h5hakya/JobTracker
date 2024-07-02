@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.app.employeetracking.features.auth.presentation.ForgotPassword
 import com.app.employeetracking.features.auth.presentation.Login
 import com.app.employeetracking.features.dashboard.presentation.Dashboard
 import kotlinx.serialization.Serializable
@@ -32,8 +33,12 @@ fun JobTrackerApp() {
         startDestination = Dashboard,
     ) {
         navigation<Auth>(startDestination = Login) {
-            composable<Login> { Login() }
-            composable<Forgot> {  }
+            composable<Login> { Login(
+                gotoForgotPassword = {
+                    navController.navigate(route = Forgot)
+                }
+            ) }
+            composable<Forgot> { ForgotPassword() }
         }
         composable<Dashboard> { Dashboard(
             gotoLogin = {
